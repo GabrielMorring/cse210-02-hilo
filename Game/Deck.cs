@@ -4,7 +4,7 @@ namespace Game
 {
     public class Deck
     {
-        List<int> cards = new List<int>();
+        public List<int> cards = new List<int>();
        
 
         public Deck()

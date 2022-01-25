@@ -25,8 +25,15 @@ give prompts to the player, and decide if the game is over or not.
 
 The Director class will have the properties of:
 1 gameDeck: the deck of cards to draw from
-2 score: the score the points the player will earn or lose
+2 score: the points the player will earn or lose
 3 totalScore: the total points of the player
+4 isPlaying: whether the  game is playing or not
+5 currentCard: the card that is drawn
+6 prevCard: the last card that was drawn
+
+The Director class will have the methods of:
+1 StartGame: starts and runs the game
+2 DrawCard: draws a card from the deck and makes currentCard it, and prevcard the last card.
 
 The Deck class will be the deck of cards.
 
@@ -38,5 +45,5 @@ The Deck class will have the methods of:
 2 AddCard: adds a card to the end of the deck
 3 RemoveCard: removes a card from the deck with a parameter of index for what card to remove
 4 Shuffle: shuffles the deck
-5 ResetDeck: Resets the deck to default 52 card deck
+5 Reset: Resets the deck to default 52 card deck
 
