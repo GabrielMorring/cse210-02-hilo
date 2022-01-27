@@ -11,7 +11,7 @@ namespace Game
         {
             cards = new List<int>();
             GenerateDeck();
-            Shuffle();
+           
         }
 
         public void GenerateDeck()

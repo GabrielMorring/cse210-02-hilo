@@ -37,6 +37,7 @@ namespace Game
             totalScore = 300;
             isPlaying = true;
             gameDeck = new Deck();
+            gameDeck.Shuffle();
         }
 
         /// <summary>
@@ -65,38 +66,21 @@ namespace Game
             
         }
 
-        public void AskPlayAgain()
-        {
-            if (isPlaying)
-            {
-                Console.WriteLine("Do you want to play again? [y/n]");
-                userPlaying = Console.ReadLine();
-                while (userPlaying != "y" && userPlaying != "n")
-                {
-                    Console.WriteLine("That is not a valid answer, enter  a valid one.");
-                    userPlaying = Console.ReadLine();
-                }
-                if (userPlaying == "y")
-                {
-                    isPlaying = true;
-                }
-
-                if (userPlaying == "n")
-                {
-                    isPlaying = false;
-                } 
-            }
-        }
+        
 
         public void GetInputs()
         {
             Console.WriteLine("Will the next card be higher or Lower? [h/l]");
             guess = Console.ReadLine();
+
             while (guess != "h" && guess != "l")
             {
                 Console.WriteLine("That is not a valid guess, guess again.");
                 guess = Console.ReadLine();
             }
+
+            Console.WriteLine();
+
         }
 
         public void DoUpdates()
@@ -104,23 +88,9 @@ namespace Game
             DrawCard();
 
             score = 0;
-            isCorrect = false;
-            
-            if (guess == "h")
-            {
-                if (currentCard > prevCard)
-                {
-                    isCorrect = true;
-                }    
-            }
 
-            else if (guess == "l")
-            {
-                if (currentCard < prevCard)
-                {
-                    isCorrect = true;
-                }
-            } 
+            CheckRight();
+            
 
             if (isCorrect)
             {
@@ -152,17 +122,50 @@ namespace Game
             else
             {
                 Console.WriteLine($"The Card is {currentCard}");
+                Console.WriteLine();
+
                 if (isCorrect)
                 {
                     Console.WriteLine("You guessed right!");
                 }
+                
                 if (!isCorrect)
                 {
                     Console.WriteLine("You guessed wrong.");
                 }
+                
+                Console.WriteLine();
                 Console.WriteLine($"Your points are {totalScore}.");
+                Console.WriteLine();
+
             }
             
+        }
+
+        public void AskPlayAgain()
+        {
+            if (isPlaying)
+            {
+                Console.WriteLine("Do you want to play again? [y/n]");
+                userPlaying = Console.ReadLine();
+                Console.WriteLine();
+
+                while (userPlaying != "y" && userPlaying != "n")
+                {
+                    Console.WriteLine("That is not a valid answer, enter  a valid one.");
+                    userPlaying = Console.ReadLine();
+                }
+                
+                if (userPlaying == "y")
+                {
+                    isPlaying = true;
+                }
+
+                if (userPlaying == "n")
+                {
+                    isPlaying = false;
+                } 
+            }
         }
 
         public void DrawCard()
@@ -172,6 +175,26 @@ namespace Game
             gameDeck.RemoveCard(0);
         }
 
+        public void CheckRight()
+        {
+            isCorrect = false;
+            
+            if (guess == "h")
+            {
+                if (currentCard > prevCard)
+                {
+                    isCorrect = true;
+                }    
+            }
+
+            else if (guess == "l")
+            {
+                if (currentCard < prevCard)
+                {
+                    isCorrect = true;
+                }
+            } 
+        }
         
         
     }
