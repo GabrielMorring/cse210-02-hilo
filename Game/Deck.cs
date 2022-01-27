@@ -4,12 +4,14 @@ namespace Game
 {
     public class Deck
     {
-        public List<int> cards = new List<int>();
+        public List<int> cards;
        
 
         public Deck()
         {
+            cards = new List<int>();
             GenerateDeck();
+            Shuffle();
         }
 
         public void GenerateDeck()
@@ -34,9 +36,17 @@ namespace Game
             cards.RemoveAt(i);
         }
 
-        // public void Shuffle()
-        // {
-        // }
+        public void Shuffle()
+        {
+            Random rnd = new Random();
+            for (int i = 0; i < cards.Count(); i++)
+            {
+                int item = cards[0];
+                cards.RemoveAt(0);
+                int spot = rnd.Next(0, cards.Count());
+                cards.Insert(spot, item); 
+            }
+        }
 
         public void Reset()
         {
